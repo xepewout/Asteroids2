@@ -1,0 +1,34 @@
+[gd_scene load_steps=3 format=3 uid="uid://l4sgl4ydba1y"]
+
+[ext_resource type="Texture2D" uid="uid://blnxosl4frfwt" path="res://assets/asteroid.png" id="1_u87q6"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_p0ukn"]
+radius = 25.0
+
+[node name="Asteroid" type="RigidBody2D" groups=["asteroid"]]
+gravity_scale = 0.0
+continuous_cd = 2
+contact_monitor = true
+max_contacts_reported = 1
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("CircleShape2D_p0ukn")
+
+[node name="ColorRect" type="ColorRect" parent="."]
+visible = false
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -20.0
+offset_top = -20.0
+offset_right = 20.0
+offset_bottom = 20.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(1, 0.22745098, 1, 1)
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture_filter = 1
+texture = ExtResource("1_u87q6")

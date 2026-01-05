@@ -1,0 +1,121 @@
+[gd_scene load_steps=12 format=3 uid="uid://ckeowl00brq88"]
+
+[ext_resource type="Script" uid="uid://d0033f1n5f6bf" path="res://main.gd" id="1_ig7tw"]
+[ext_resource type="PackedScene" uid="uid://x4x1grv3wpgi" path="res://hud.tscn" id="2_0xm2m"]
+[ext_resource type="Texture2D" uid="uid://drpqibblmryp8" path="res://assets/background.png" id="3_h2yge"]
+[ext_resource type="AudioStream" uid="uid://qjbgjon8yffs" path="res://assets/PlanetLooop.mp3" id="4_1bvp3"]
+[ext_resource type="AudioStream" uid="uid://bsavurallirvr" path="res://assets/hit.mp3" id="5_7mycd"]
+[ext_resource type="AudioStream" uid="uid://c08cypu4pb0bo" path="res://assets/item.mp3" id="6_272bh"]
+
+[sub_resource type="SegmentShape2D" id="SegmentShape2D_0xm2m"]
+b = Vector2(0, 960)
+
+[sub_resource type="SegmentShape2D" id="SegmentShape2D_h2yge"]
+b = Vector2(1280, 0)
+
+[sub_resource type="SegmentShape2D" id="SegmentShape2D_1bvp3"]
+a = Vector2(1280, 0)
+b = Vector2(1280, 960)
+
+[sub_resource type="SegmentShape2D" id="SegmentShape2D_lquwl"]
+a = Vector2(0, 960)
+b = Vector2(1280, 960)
+
+[sub_resource type="Curve2D" id="Curve2D_ig7tw"]
+_data = {
+"points": PackedVector2Array(0, 0, 0, 0, 40, 880, 0, 0, 0, 0, 40, 800, 0, 0, 0, 0, 40, 720, 0, 0, 0, 0, 40, 640, 0, 0, 0, 0, 40, 560, 0, 0, 0, 0, 40, 480, 0, 0, 0, 0, 40, 400, 0, 0, 0, 0, 40, 320, 0, 0, 0, 0, 40, 240, 0, 0, 0, 0, 40, 160, 0, 0, 0, 0, 40, 80, 0, 0, 0, 0, 40, 40, 0, 0, 0, 0, 80, 40, 0, 0, 0, 0, 160, 40, 0, 0, 0, 0, 240, 40, 0, 0, 0, 0, 320, 40, 0, 0, 0, 0, 400, 40, 0, 0, 0, 0, 480, 40, 0, 0, 0, 0, 560, 40, 0, 0, 0, 0, 640, 40, 0, 0, 0, 0, 720, 40, 0, 0, 0, 0, 800, 40, 0, 0, 0, 0, 880, 40, 0, 0, 0, 0, 960, 40, 0, 0, 0, 0, 1040, 40, 0, 0, 0, 0, 1120, 40, 0, 0, 0, 0, 1200, 40, 0, 0, 0, 0, 1240, 40, 0, 0, 0, 0, 1240, 80, 0, 0, 0, 0, 1240, 160, 0, 0, 0, 0, 1240, 240, 0, 0, 0, 0, 1240, 320, 0, 0, 0, 0, 1240, 400, 0, 0, 0, 0, 1240, 480, 0, 0, 0, 0, 1240, 560, 0, 0, 0, 0, 1240, 640, 0, 0, 0, 0, 1240, 720, 0, 0, 0, 0, 1240, 800, 0, 0, 0, 0, 1240, 880, 0, 0, 0, 0, 1240, 920, 0, 0, 0, 0, 40, 920, 0, 0, 0, 0, 40, 880)
+}
+point_count = 42
+
+[node name="Main" type="Node2D"]
+script = ExtResource("1_ig7tw")
+
+[node name="ColorRect" type="ColorRect" parent="."]
+offset_right = 1280.0
+offset_bottom = 960.0
+color = Color(0, 0.21506616, 0.21572867, 1)
+
+[node name="BorderLeft" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="BorderLeft"]
+shape = SubResource("SegmentShape2D_0xm2m")
+
+[node name="BorderTop" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="BorderTop"]
+shape = SubResource("SegmentShape2D_h2yge")
+
+[node name="BorderRight" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="BorderRight"]
+shape = SubResource("SegmentShape2D_1bvp3")
+
+[node name="BorderDown" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="BorderDown"]
+shape = SubResource("SegmentShape2D_lquwl")
+
+[node name="AsteroidTimer" type="Timer" parent="."]
+wait_time = 3.0
+autostart = true
+
+[node name="UFOTimer" type="Timer" parent="."]
+autostart = true
+
+[node name="Asteroid Path" type="Path2D" parent="."]
+curve = SubResource("Curve2D_ig7tw")
+
+[node name="AsteroidSpawnLocation" type="PathFollow2D" parent="Asteroid Path"]
+position = Vector2(40, 880)
+rotation = -1.5707964
+
+[node name="HUD" parent="." instance=ExtResource("2_0xm2m")]
+
+[node name="ItemTimer" type="Timer" parent="."]
+wait_time = 5.0
+autostart = true
+
+[node name="ItemScaleTimer" type="Timer" parent="."]
+wait_time = 5.0
+one_shot = true
+
+[node name="ItemLaserTimer" type="Timer" parent="."]
+wait_time = 20.0
+one_shot = true
+
+[node name="ItemUFOTimer" type="Timer" parent="."]
+wait_time = 10.0
+one_shot = true
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+position = Vector2(640, 480)
+texture = ExtResource("3_h2yge")
+
+[node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("4_1bvp3")
+autoplay = true
+parameters/looping = true
+
+[node name="HitSound" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("5_7mycd")
+volume_db = -10.0
+
+[node name="ItemSound" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("6_272bh")
+volume_db = -10.0
+
+[connection signal="area_entered" from="BorderLeft" to="." method="_area_on_border_entered"]
+[connection signal="body_entered" from="BorderLeft" to="." method="_on_border_entered" binds= [Vector2(1152, 0)]]
+[connection signal="area_entered" from="BorderTop" to="." method="_area_on_border_entered"]
+[connection signal="body_entered" from="BorderTop" to="." method="_on_border_entered" binds= [Vector2(0, 832)]]
+[connection signal="area_entered" from="BorderRight" to="." method="_area_on_border_entered"]
+[connection signal="body_entered" from="BorderRight" to="." method="_on_border_entered" binds= [Vector2(128, 0)]]
+[connection signal="area_entered" from="BorderDown" to="." method="_area_on_border_entered"]
+[connection signal="body_entered" from="BorderDown" to="." method="_on_border_entered" binds= [Vector2(0, 128)]]
+[connection signal="timeout" from="AsteroidTimer" to="." method="spawnAsteroid"]
+[connection signal="timeout" from="UFOTimer" to="." method="spawnUFO"]
+[connection signal="start_game" from="HUD" to="." method="_new_game"]
+[connection signal="timeout" from="ItemTimer" to="." method="spawnItem"]
+[connection signal="timeout" from="ItemScaleTimer" to="." method="_on_scale_timer_timeout"]
+[connection signal="timeout" from="ItemLaserTimer" to="." method="_on_laser_timer_timeout"]
+[connection signal="timeout" from="ItemUFOTimer" to="." method="_on_item_ufo_timer_timeout"]

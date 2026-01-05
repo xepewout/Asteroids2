@@ -1,0 +1,15 @@
+[gd_scene load_steps=4 format=3 uid="uid://b0c7yk3bpaln7"]
+
+[ext_resource type="Script" uid="uid://bxnp6r7tj5mty" path="res://item.gd" id="1_tnite"]
+[ext_resource type="Texture2D" uid="uid://cmlrf7y8rsqee" path="res://assets/item.png" id="2_ttk8k"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_ttk8k"]
+
+[node name="Item" type="Area2D" groups=["item"]]
+script = ExtResource("1_tnite")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("RectangleShape2D_ttk8k")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = ExtResource("2_ttk8k")
