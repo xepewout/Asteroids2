@@ -1,6 +1,6 @@
-# ASTEROIDS 2 
-[link](https://jorryns.itch.io/asteroids2)
-Long awaited sequel to the hit arcade game Asteroids!
+# [ASTEROIDS 2](https://jorryns.itch.io/asteroids2)
+Long awaited sequel to the hit arcade game Asteroids! \
+
 
 # DIRECTIONS
 You play as the earth trying to avoid being destroyed
